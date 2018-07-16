@@ -5,7 +5,7 @@
 #  fail:   msg="S.O. no soportado"
 #  when: ansible_distribution_version != "16.04" and ansible_distribution != "Ubuntu"
 
-- name: Run the equivalent of "apt-get update"
+- name: Ejecutando "apt-get update"
   apt:
     update_cache: yes
     cache_valid_time: 3600
@@ -47,3 +47,5 @@
     src: templates/hostname
     dest: /etc/hostname
 
+- name: Rebotando equipo
+  shell: /sbin/shutdown -r now
