@@ -5,6 +5,24 @@
 #  fail:   msg="S.O. no soportado"
 #  when: ansible_distribution_version != "16.04" and ansible_distribution != "Ubuntu"
 
+- name: Run the equivalent of "apt-get update"
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Update all packages to the latest version
+  apt:
+    upgrade: dist
+
+- name: Upgrade all packages to the latest version
+  apt:
+    name: aptitude
+    state: latest
+
+- name: Remove dependencies that are no longer required
+  apt:
+    autoremove: yes
+
 - name: Instalamos programas basicos
   apt:
     name: "{{ item }}"
