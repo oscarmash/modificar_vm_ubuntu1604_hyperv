@@ -1,0 +1,31 @@
+---
+# tasks file for template
+
+#- name: Verifica que sea Ubuntu
+#  fail:   msg="S.O. no soportado"
+#  when: ansible_distribution_version != "16.04" and ansible_distribution != "Ubuntu"
+
+- name: Instalamos programas basicos
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+    cache_valid_time: 3600
+  with_items:
+    - htop
+    - iftop
+
+- name: Configuracion networking
+  template:
+    src: templates/interfaces
+    dest: /etc/network/interfaces
+
+- name: Configuracion fichero hosts
+  template:
+    src: templates/hosts
+    dest: /etc/hosts
+
+- name: Configuracion fichero hostname
+  template:
+    src: templates/hostname
+    dest: /etc/hostname
+

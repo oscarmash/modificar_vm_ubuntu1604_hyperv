@@ -1,0 +1,16 @@
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+auto eth0
+iface eth0 inet static
+	address {{ ip_equipo }}
+	netmask 255.255.255.0
+	network 172.26.0.0
+	broadcast 172.26.0.255
+	gateway 172.26.0.1
+	dns-nameservers 172.26.0.10
+	dns-search ilba.cat
