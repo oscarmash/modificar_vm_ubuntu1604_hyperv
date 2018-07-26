@@ -31,6 +31,7 @@
   with_items:
     - htop
     - iftop
+    - vim
 
 - name: Configuracion networking
   template:
